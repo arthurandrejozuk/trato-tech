@@ -11,6 +11,8 @@ import { MdShoppingCart } from "react-icons/md";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 
+import type { Item, RootState } from "../Interfaces";
+
 const CardStyle = styled.div`
     display: flex;
     flex-direction: column;
@@ -97,20 +99,7 @@ const CardStyle = styled.div`
 `
 
 
-interface Item {
-        titulo: string;
-        descricao: string;
-        foto: string;
-        favorito: boolean;
-        preco: number;
-        id: string;
-        categoria: string;
-    carrinho?: boolean;
-    quantidade?: number;
-}
-interface RootState {
-    carrinho: Item[];
-}
+
 
 export default function Card({ titulo, descricao, preco, foto, favorito, id, carrinho, quantidade }: Item) {
     const dispatch = useDispatch();

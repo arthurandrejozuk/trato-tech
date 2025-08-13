@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import type { IBanner } from "../Interfaces"
 
 const Section = styled.div`
     
@@ -68,13 +69,6 @@ const Section = styled.div`
     }
 `
 
-interface IBanner {
-    title?: string,
-    paragraph?: string,
-    button?: string,
-    img?: string
-    noImg?: boolean
-}
 
 export default function Banner({title, paragraph, button, img, noImg}: IBanner) {
     return (

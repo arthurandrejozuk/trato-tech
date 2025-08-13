@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Default from "./layout/Default";
 import Categoria from "./pages/Categoria";
 import Carrinho from "./pages/Carrinho";
+import Anuncie from "./pages/Anuncie";
 
 function App() {
 
@@ -12,7 +13,8 @@ function App() {
               <Route path="/" element={<Default />} >
                 <Route index element={<Home />} />
                 <Route path="/categoria/:id" element={<Categoria />} />
-                <Route path="/carrinho" element={<Carrinho/>}/>
+                <Route path="/carrinho" element={<Carrinho />} />
+                <Route path="/anunciar" element={<Anuncie/>}/>
               </Route>
             </Routes>
         </BrowserRouter>

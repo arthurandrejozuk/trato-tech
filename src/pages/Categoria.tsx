@@ -4,16 +4,8 @@ import type { RootState } from "../store";
 import { useParams } from "react-router-dom";
 import Cards from "../components/Cards";
 import Card from "../components/Card";
+import type { Item } from "../Interfaces";
 
-export interface Item {
-        titulo: string;
-        descricao: string;
-        foto: string;
-        favorito: boolean;
-        preco: number;
-        id: string;
-        categoria: string;
-}
 
 export default function Categoria() {
 

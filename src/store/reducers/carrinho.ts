@@ -1,11 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { ItemCarrinho } from "../../Interfaces";
 
-export interface ItemCarrinho {
-    
-    id: string
-    quantidade: number
-       
-}
+
 
 
 const initialState:ItemCarrinho[] = []

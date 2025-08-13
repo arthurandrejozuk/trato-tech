@@ -1,11 +1,12 @@
 // import styled from "styled-components"
 import Banner from "../components/Banner"
 import { useDispatch, useSelector } from "react-redux"
-import { resetarCarrinho, type ItemCarrinho } from "../store/reducers/carrinho";
+import { resetarCarrinho} from "../store/reducers/carrinho";
 import type { Item } from "./Categoria";
 import Cards from "../components/Cards";
 import Card from "../components/Card";
 import styled from "styled-components";
+import type { ItemCarrinho, RootStateCarrinho } from "../Interfaces";
 // import Card from "../components/Card";
 // const Section = styled.section`
     
@@ -50,16 +51,11 @@ const Section = styled.section`
 
 `
 // `
-interface RootState {
-    carrinho: ItemCarrinho[];
-    itens: Item[]
-    total: number;
-    busca: string;
-}
+
 export default function Carrinho() {
     const dispatch = useDispatch();
 
-    const { carrinho, total } = useSelector((state: RootState) => {
+    const { carrinho, total } = useSelector((state: RootStateCarrinho) => {
         let total = 0;
         const regExp = new RegExp(state.busca, 'i')
         const carrinhoReduce = state.carrinho.reduce((itens: (Item & { quantidade: number })[], itemNoCarrinho: ItemCarrinho) => {
