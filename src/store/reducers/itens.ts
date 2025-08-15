@@ -204,11 +204,19 @@ const initialState = [{
   categoria: 'som'
 }];
 
+// Slice é a maneira como inicia um reducer
 
 const itensSlice = createSlice({
+    // Nome é como iremos chamar o reducer, nesse caso itens
     name: "itens",
+    // estado inicial será o estado que o reducer começa
     initialState,
+    // reducers permite criar funções para modificar os estados, seriam as actions
   reducers: {
+    // estado é o seria o estado em que os itens se encontram e o payload um dado que será enviado
+    cadastrarItem: (state, { payload }) => {
+       state.push({...payload, id: uuid()})
+    },
    mudarFavorito: (state, { payload }) => {
   const item = state.find(item => item.id === payload);
       if (item) {
@@ -218,6 +226,6 @@ const itensSlice = createSlice({
   },
 });
 
-export const { mudarFavorito } = itensSlice.actions;
+export const { mudarFavorito, cadastrarItem } = itensSlice.actions;
 
 export default itensSlice.reducer;

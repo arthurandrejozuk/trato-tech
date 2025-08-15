@@ -2,11 +2,10 @@
 import Banner from "../components/Banner"
 import { useDispatch, useSelector } from "react-redux"
 import { resetarCarrinho} from "../store/reducers/carrinho";
-import type { Item } from "./Categoria";
 import Cards from "../components/Cards";
 import Card from "../components/Card";
 import styled from "styled-components";
-import type { ItemCarrinho, RootStateCarrinho } from "../Interfaces";
+import type { Item, ItemCarrinho, RootStateCarrinho } from "../Interfaces";
 // import Card from "../components/Card";
 // const Section = styled.section`
     
@@ -63,7 +62,6 @@ export default function Carrinho() {
             if (item) {
                 total += (item.preco * itemNoCarrinho.quantidade);    
                 if (item?.titulo.match(regExp)) {
-                   
                      itens.push({
                         ...item,
                         quantidade: itemNoCarrinho.quantidade,
@@ -79,7 +77,9 @@ export default function Carrinho() {
 
     return (
         <Section>
-            <Banner button="Finalizar compras" noImg title="Seu carrinho" paragraph="Confira produtos que você adicionou ao carrinho." />
+            <Banner noImg title="Seu carrinho" paragraph="Confira produtos que você adicionou ao carrinho.">
+                <button>Finalizar compras</button>
+            </Banner>
             <Cards>
                 {carrinho.map(item => (
                     <Card

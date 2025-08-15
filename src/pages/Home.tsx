@@ -4,6 +4,7 @@ import Cards from "../components/Cards";
 import Categorias from "../components/Categorias";
 import Card from "../components/Card";
 import type { RootState } from "../store";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -19,10 +20,14 @@ export default function Home() {
             itens: !regExp ? state.itens : state.itens.filter((item) => item.titulo.match(regExp))
         })
     })
-
+const navigate = useNavigate();
     return (
         <>
-            <Banner />
+            <Banner>
+                <button onClick={() => navigate('/anunciar')}>
+                    Quero anunciar
+                </button>
+            </Banner>
             <Categorias />
             <Cards>
                 {itens.map(item => (

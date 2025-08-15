@@ -15,9 +15,10 @@ export interface Item {
 export interface IBanner {
     title?: string,
     paragraph?: string,
-    button?: string,
+    children?: React.ReactNode
     img?: string
     noImg?: boolean
+    anunciar?: boolean
 }
 
 export interface RootState {

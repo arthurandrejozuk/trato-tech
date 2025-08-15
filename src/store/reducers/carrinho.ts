@@ -7,12 +7,11 @@ import type { ItemCarrinho } from "../../Interfaces";
 const initialState:ItemCarrinho[] = []
 
 const carrinhoSlice = createSlice({
-    name: "categorias",
+    name: "carrinho",
     initialState,
     reducers: {
         mudarCarrinho: (state, { payload }) => {
             const itemExist = state.some(item => item.id == payload);
-            
             if (!itemExist) return [
                 ...state,
                 {

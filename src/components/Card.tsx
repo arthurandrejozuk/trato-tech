@@ -10,8 +10,9 @@ import { mudarCarrinho, mudarQuantidade } from "../store/reducers/carrinho";
 import { MdShoppingCart } from "react-icons/md";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
-
+import { FaCheck } from "react-icons/fa6";
 import type { Item, RootState } from "../Interfaces";
+import { useState } from "react";
 
 const CardStyle = styled.div`
     display: flex;
@@ -20,6 +21,11 @@ const CardStyle = styled.div`
     
     box-shadow: 1px 1px 12px 1px #c0bfbfc7;
     max-width: 400px;
+    width: 400px;
+    img{
+        width: 100%;
+        height: 100%;
+    }
     .options{
         display: flex;
         align-self: end;
@@ -103,9 +109,10 @@ const CardStyle = styled.div`
 
 export default function Card({ titulo, descricao, preco, foto, favorito, id, carrinho, quantidade }: Item) {
     const dispatch = useDispatch();
-   
+    const [modoEdicao, setModoEdicao] = useState(false)
+    const [novoTitulo, setNovoTitulo] = useState(titulo);
     const estaNoCarrinho = useSelector((state: RootState) => state.carrinho.some((itemNoCarrinho: Item) => itemNoCarrinho.id == id ));
-
+    // Usamos as actions, o payload é o id. Como foi dito, o payload é o que será recebido pela função
     function resolverFavorito() {
         dispatch(mudarFavorito(id));
     }
@@ -114,16 +121,21 @@ export default function Card({ titulo, descricao, preco, foto, favorito, id, car
         dispatch(mudarCarrinho(id));
     }
 
+    const componenteModoEdicao = <>   
+    {!carrinho ? 
+            <div className="options">
+                {modoEdicao ? <FaCheck className="icon" onClick={() => setModoEdicao(false)} size={24}/> : <MdEdit onClick={() => setModoEdicao(true)} size={24} className="icon" />}
+                <MdDeleteOutline size={24} className="icon" />
+            </div> : <></>
+    }    
+    </>
     return (
         <CardStyle key={id}>
-            <div className="options">
-                <MdEdit size={24} className="icon" />
-                <MdDeleteOutline size={24} className="icon" />
-            </div>
+            {componenteModoEdicao}
             <img src={foto} alt="" />
             <div className="card__description">
                 <div className="card__description_info">
-                    <h3>{titulo}</h3>
+                    {modoEdicao ? <input type="text" value={novoTitulo} onChange={(event) => setNovoTitulo(event.target.value)} /> : <h3>{titulo}</h3>}
                     <p>{descricao.slice(0,200)}...</p>
                     {/* <strong>{anunciante}</strong> */}
                 </div>
