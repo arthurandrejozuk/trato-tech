@@ -25,16 +25,7 @@ export interface RootState {
     carrinho: Item[];
 }
 
-export interface RootStateCarrinho {
-    carrinho: ItemCarrinho[];
-    itens: Item[]
-    total: number;
-    busca: string;
-}
-
 export interface ItemCarrinho {
-    
     id: string
     quantidade: number
-       
 }

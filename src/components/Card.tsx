@@ -5,7 +5,7 @@ import { FaRegStar } from "react-icons/fa";
 import { MdAddShoppingCart } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { mudarFavorito } from "../store/reducers/itens";
+import { deletarItem, mudarFavorito, mudarItem } from "../store/reducers/itens";
 import { mudarCarrinho, mudarQuantidade } from "../store/reducers/carrinho";
 import { MdShoppingCart } from "react-icons/md";
 import { FaMinus } from "react-icons/fa6";
@@ -13,6 +13,7 @@ import { FaPlus } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
 import type { Item, RootState } from "../Interfaces";
 import { useState } from "react";
+import Input from "./Input";
 
 const CardStyle = styled.div`
     display: flex;
@@ -124,8 +125,12 @@ export default function Card({ titulo, descricao, preco, foto, favorito, id, car
     const componenteModoEdicao = <>   
     {!carrinho ? 
             <div className="options">
-                {modoEdicao ? <FaCheck className="icon" onClick={() => setModoEdicao(false)} size={24}/> : <MdEdit onClick={() => setModoEdicao(true)} size={24} className="icon" />}
-                <MdDeleteOutline size={24} className="icon" />
+                {modoEdicao ? <FaCheck className="icon" onClick={() => {
+                    setModoEdicao(false)
+                    // Como payload de tipo item, fizemos mudança apenas no titulo
+                    dispatch(mudarItem({id, item: { titulo: novoTitulo }}))
+                    }} size={24}/> : <MdEdit onClick={() => setModoEdicao(true)} size={24} className="icon" />}
+                <MdDeleteOutline onClick={() => dispatch(deletarItem(id))} size={24} className="icon" />
             </div> : <></>
     }    
     </>
@@ -135,7 +140,7 @@ export default function Card({ titulo, descricao, preco, foto, favorito, id, car
             <img src={foto} alt="" />
             <div className="card__description">
                 <div className="card__description_info">
-                    {modoEdicao ? <input type="text" value={novoTitulo} onChange={(event) => setNovoTitulo(event.target.value)} /> : <h3>{titulo}</h3>}
+                    {modoEdicao ? <Input value={novoTitulo} onChange={(event) => setNovoTitulo(event.target.value)} /> : <h3>{titulo}</h3>}
                     <p>{descricao.slice(0,200)}...</p>
                     {/* <strong>{anunciante}</strong> */}
                 </div>

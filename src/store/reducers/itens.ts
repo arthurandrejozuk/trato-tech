@@ -222,10 +222,20 @@ const itensSlice = createSlice({
       if (item) {
         item.favorito = !item.favorito;
       } 
+    },
+    // Para que o item seja modificado e se mantenha no array, primeiro buscamos o index do item
+    // e fazemos um assign para manter o array de item e pegar dentro do state o objeto que recebe o payload, sendo caso, o titulo
+    mudarItem: (state, {payload}) => {
+      const index = state.findIndex(item => item.id === payload.id)
+      Object.assign(state[index], payload.item);
+    },
+    //Buscamos o index do item a ser excluido e então fazemos um splice
+    deletarItem: (state, {payload}) => {
+      const index = state.findIndex(item => item.id === payload)
+      state.splice(index, 1);
     }
-  },
-});
+}});
 
-export const { mudarFavorito, cadastrarItem } = itensSlice.actions;
+export const { mudarFavorito, cadastrarItem, mudarItem, deletarItem } = itensSlice.actions;
 
 export default itensSlice.reducer;

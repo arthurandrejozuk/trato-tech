@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-// Acessando o tipo específico:
 
+// Categorias fixas
 const estadoInicial = [
     {
         id: "eletronicos",

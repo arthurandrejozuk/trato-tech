@@ -66,8 +66,11 @@ const Section = styled.section`
 
 export default function Header() {
 
-
+    // location permite buscar o endereço atual
     const location = useLocation();
+
+    // navigate permite navegar para diferentes páginas sem recarregar ou dar refresh 
+    // Assim como o Link
     const navigate = useNavigate();
 
 
@@ -79,9 +82,11 @@ export default function Header() {
             <nav className="header__nav">
                 <ul className="header__nav_ul">
                     <li className="header__ul_li">
+                         {/* Faz uma mudança visual no componente caso tenha o pathname o padrão */}
                         <Link className={`header__li_link ${location.pathname === '/' ? 'active' : ''}`} to={'/'}>Página inicial</Link>
                     </li>
                       <li className="header__ul_li">
+                         {/* Faz uma mudança visual no componente caso tenha o pathname seja 'mais visitados' */}
                         <Link className={`header__li_link ${location.pathname === '/visitados' ? 'active' : ''}`} to="/visitados">Mais visitados</Link>
                     </li>
                     <button className="header__button_login">

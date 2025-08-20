@@ -5,7 +5,8 @@ import { resetarCarrinho} from "../store/reducers/carrinho";
 import Cards from "../components/Cards";
 import Card from "../components/Card";
 import styled from "styled-components";
-import type { Item, ItemCarrinho, RootStateCarrinho } from "../Interfaces";
+import type { Item, ItemCarrinho } from "../Interfaces";
+import type { RootState } from "../store";
 // import Card from "../components/Card";
 // const Section = styled.section`
     
@@ -54,20 +55,25 @@ const Section = styled.section`
 export default function Carrinho() {
     const dispatch = useDispatch();
 
-    const { carrinho, total } = useSelector((state: RootStateCarrinho) => {
+    const { carrinho, total } = useSelector((state: RootState) => {
         let total = 0;
-        const regExp = new RegExp(state.busca, 'i')
-        const carrinhoReduce = state.carrinho.reduce((itens: (Item & { quantidade: number })[], itemNoCarrinho: ItemCarrinho) => {
+        const regExp = new RegExp(state.busca, 'i');
+        // Fazemos um reduce nos objs de carrinho, que vai passar por cada obj e comparar com o id do obj no carrinho
+        const carrinhoReduce = state.carrinho.reduce((itens: (Item)[], itemNoCarrinho: ItemCarrinho) => {
             const item = state.itens.find(item => item.id === itemNoCarrinho.id);
+            // Caso ele encontre 
             if (item) {
+                // ele vai pegar o total (zero, no momento) e colocar o preço do item vezes a quantidade no carrinho
                 total += (item.preco * itemNoCarrinho.quantidade);    
+                // caso tenha uma busca no carrinho, ele retorna apenas ela
                 if (item?.titulo.match(regExp)) {
-                     itens.push({
-                        ...item,
-                        quantidade: itemNoCarrinho.quantidade,
-                    });
+                    itens.push({
+                       ...item,
+                       quantidade: itemNoCarrinho.quantidade,
+                   });
                 }
             }
+            // ou todos os itens
             return itens;
         }, []);
         return {

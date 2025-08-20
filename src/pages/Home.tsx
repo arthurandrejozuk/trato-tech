@@ -13,7 +13,8 @@ export default function Home() {
 
 
     const { itens } = useSelector((state: RootState) => {
-        
+
+        // Pegamos o valor digitado na busca e transformamos e um RegExp para filtrar os objetos
         const regExp = new RegExp(state.busca, 'i');
         
         return ({
@@ -31,8 +32,7 @@ const navigate = useNavigate();
             <Categorias />
             <Cards>
                 {itens.map(item => (
-                    <Card
-                        
+                    <Card 
                         {...item}
                     />
                 ))}

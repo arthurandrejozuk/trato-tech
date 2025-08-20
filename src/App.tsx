@@ -12,8 +12,12 @@ function App() {
             <Routes>
               <Route path="/" element={<Default />} >
                 <Route index element={<Home />} />
+                {/* Uma maneira de organizar varias paginas para cada categoria existente 
+                  dentro dela haverá um algoritmo para determinar qual a categoria pelo id 
+                */}
                 <Route path="/categoria/:id" element={<Categoria />} />
                 <Route path="/carrinho" element={<Carrinho />} />
+                 {/* Aqui pegaremos o id da página que o quero anunciar foi clicado */}
                 <Route path="/anunciar/:id" element={<Anuncie/>}/>
                 <Route path="/anunciar" element={<Anuncie/>}/>
               </Route>

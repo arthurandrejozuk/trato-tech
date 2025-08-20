@@ -60,7 +60,7 @@ const Section = styled.div`
 
 export default function Categorias() {
     
-
+    // Pegamos o state, que nesse caso é o tipo do store, que tem alguns reducers, sendo nesse caso o de categorias.
     const categorias = useSelector((state: RootState) => state.categorias);
 
     return (

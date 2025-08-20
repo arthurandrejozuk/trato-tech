@@ -38,6 +38,8 @@ export default function Search() {
     const busca = useSelector((state: RootState) => state.busca)
     const dispatch = useDispatch();
     const location = useLocation();
+    // caso o endereço mude, os objetos voltarão ao aparecer
+    // e os objetos sempre mudarão enquanto o dispatch for acionado
     useEffect(() => {
         dispatch(resetarBusca())
     },[location.pathname, dispatch])
