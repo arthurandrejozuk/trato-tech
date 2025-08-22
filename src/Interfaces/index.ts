@@ -12,6 +12,8 @@ export interface Item {
     quantidade?: number;
 }
 
+
+
 export interface IBanner {
     title?: string,
     paragraph?: string,
@@ -28,4 +30,9 @@ export interface RootState {
 export interface ItemCarrinho {
     id: string
     quantidade: number
+}
+export interface ICategoria {
+        id: string,
+        img: string,
+        title: string
 }

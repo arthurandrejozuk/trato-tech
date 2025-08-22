@@ -17,7 +17,7 @@ export default function Categoria() {
     const { categoria, itens } = useSelector((state: RootState) => {             
         const regExp = new RegExp(state.busca, 'i');
         return {
-                categoria: state.categorias.find(categoria => categoria.id === id),
+                categoria: state.categorias.find(categoria => categoria.id === id) || undefined,
                 itens: state.itens.filter(item => item.categoria === id && item.titulo.match(regExp)),
             }
         }

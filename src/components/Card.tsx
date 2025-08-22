@@ -123,16 +123,16 @@ export default function Card({ titulo, descricao, preco, foto, favorito, id, car
     }
 
     const componenteModoEdicao = <>   
-    {!carrinho ? 
-            <div className="options">
-                {modoEdicao ? <FaCheck className="icon" onClick={() => {
-                    setModoEdicao(false)
-                    // Como payload de tipo item, fizemos mudança apenas no titulo
-                    dispatch(mudarItem({id, item: { titulo: novoTitulo }}))
-                    }} size={24}/> : <MdEdit onClick={() => setModoEdicao(true)} size={24} className="icon" />}
-                <MdDeleteOutline onClick={() => dispatch(deletarItem(id))} size={24} className="icon" />
-            </div> : <></>
-    }    
+            {!carrinho ? 
+                    <div className="options">
+                        {modoEdicao ? <FaCheck className="icon" onClick={() => {
+                            setModoEdicao(false)
+                            // Como payload de tipo item, fizemos mudança apenas no titulo
+                            dispatch(mudarItem({id, item: { titulo: novoTitulo }}))
+                            }} size={24}/> : <MdEdit onClick={() => setModoEdicao(true)} size={24} className="icon" />}
+                        <MdDeleteOutline onClick={() => dispatch(deletarItem(id))} size={24} className="icon" />
+                    </div> : <div className="options"><MdDeleteOutline onClick={() => dispatch(deletarItem(id))} size={24} className="icon" /></div>
+            }    
     </>
     return (
         <CardStyle key={id}>

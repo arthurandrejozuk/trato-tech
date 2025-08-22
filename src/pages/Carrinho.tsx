@@ -55,6 +55,10 @@ const Section = styled.section`
 export default function Carrinho() {
     const dispatch = useDispatch();
 
+    function comprar(){
+        dispatch(resetarCarrinho())
+    }
+
     const { carrinho, total } = useSelector((state: RootState) => {
         let total = 0;
         const regExp = new RegExp(state.busca, 'i');
@@ -105,7 +109,7 @@ export default function Carrinho() {
                 <p>Total: <span>R$ {total.toFixed(2)}</span></p>
             </div>
             <div className="button_pagamento">
-                <button onClick={() => dispatch(resetarCarrinho())}>
+                <button onClick={() => comprar()}>
                     Finalizar compra
                 </button>
             </div>

@@ -1,8 +1,11 @@
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import type { RootState } from "../store";
+import { useEffect } from "react";
+import { buscarCategorias } from "../store/reducers/categorias";
+import { buscarItens } from "../store/reducers/itens";
 
 const Section = styled.div`
     
@@ -62,6 +65,20 @@ export default function Categorias() {
     
     // Pegamos o state, que nesse caso é o tipo do store, que tem alguns reducers, sendo nesse caso o de categorias.
     const categorias = useSelector((state: RootState) => state.categorias);
+
+    const dispatch = useDispatch();
+
+    
+   
+    
+
+    useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        dispatch<any>(buscarCategorias());
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        dispatch<any>(buscarItens())
+
+    },[dispatch])
 
     return (
         <Section>
